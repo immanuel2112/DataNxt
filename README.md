@@ -1,2 +1,2 @@
-# SAPDMDQ
-SAP Data Migration Data Quality
+# SAPDMDQA
+SAP Data Migration - Data Quality Assessment
