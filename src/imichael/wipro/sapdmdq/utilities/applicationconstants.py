@@ -6,7 +6,7 @@ class ApplicationConstants:
         self.APPLICATION_LOGIN_GEOMETRY = "660x400+450+200"
         self.APPLICATION_HEADER_FRAME_BGCOLOR = "#1A99A2"
         self.APPLICATION_CONTENT_FRAME_BGCOLOR = "#47B6BE"
-        self.APPLICATION_HEADER_FRAME_LABEL = "Install SAP DM-DQA"
+        self.APPLICATION_HEADER_FRAME_LABEL = "SAP Data Migration - Data Quality Assessment"
         self.APPLICATION_HEADER_LABEL_FONT = "arial 15 bold"
         self.APPLICATION_HEADER_LABEL_FGCOLOR = "#FFFFFF"
         self.APPLICATION_HEADER_LABEL_BGCOLOR = "#1A99A2"
