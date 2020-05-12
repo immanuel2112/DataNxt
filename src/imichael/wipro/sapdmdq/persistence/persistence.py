@@ -10,9 +10,9 @@ class Connection:
 
     def buildconnectionstring(self):
         if len(self.sessiondetails.getUser()) == 0:
-            self.connection_string = 'Driver={SQL Server};Server=' + self.sessiondetails.getHost() + ';Database=master;Trusted_Connection=yes;'
+            self.connection_string = 'Driver={ODBC Driver 17 for SQL Server};Server=' + self.sessiondetails.getHost() + ';Database=master;Trusted_Connection=yes;'
         else:
-            self.connection_string = 'Driver={SQL Server};Server=' + self.sessiondetails.getHost() + ';Database=master;UID=' + self.sessiondetails.getUser() + ';PWD=' + self.sessiondetails.getPassword() + ';'
+            self.connection_string = 'Driver={ODBC Driver 17 for SQL Server};Server=' + self.sessiondetails.getHost() + ';Database=master;UID=' + self.sessiondetails.getUser() + ';PWD=' + self.sessiondetails.getPassword() + ';'
 
     def test_connection(self):
         errormessage = ""
@@ -37,7 +37,7 @@ class Connection:
         self.connection.close()
         return returnvalue
 
-    def install_sdv(self):
+    def install(self):
         try:
             # Step 1: Create sdvSystemMaster database
             self.sessiondetails.writeToLog(

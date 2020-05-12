@@ -1,6 +1,6 @@
 import textwrap
 
-APPLICATION_SYSTEM_DATABASE_VALUE = "idvSystemMaster"
+APPLICATION_SYSTEM_DATABASE_VALUE = "sapdmdq"
 APPLICATION_SYSTEM_MASTER_DATABASE = "master"
 
 EXECUTE_QUERY = textwrap.dedent(""" EXEC('{query}')""")

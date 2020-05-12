@@ -1,4 +1,3 @@
-from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
 
@@ -10,9 +9,7 @@ class Home(ApplicationWindowTemplate):
         # Build Frame from Parent
         super().__init__(master)
         self.sessiondetails = sessiondetails
-
-        # Build Header Frame Label with Message
-        self.show_header_message(self.appconstants.APPLICATION_HOME_HEADER_FRAME_LABEL)
+        self.content.destroy()
 
         # Build Content Frame Structure
         self.show_content_frame()
@@ -23,44 +20,37 @@ class Home(ApplicationWindowTemplate):
 
         self.master.geometry(self.appconstants.APPLICATION_HOME_GEOMETRY)
         self.master.title(self.appconstants.APPLICATION_TITLE)
-        self.master.iconbitmap(self.appconstants.APPLICATION_ICON)
-        self.master.geometry(self.appconstants.APPLICATION_HOME_GEOMETRY)
         self.master.protocol("WM_DELETE_WINDOW", on_closing)
         self.master.mainloop()
 
     def show_content_frame(self):
-        # Place Frames
-        self.contentleft.pack(side=LEFT)
-        self.contentright.pack(fill=BOTH, expand=True)
+        self.home_tab = ttk.Notebook(self.master)
+        #PROJECTS_TAB
+        self.projects_tab = ttk.Frame(self.home_tab)
+        self.newproject_tab = ttk.Frame(self.home_tab)
+        self.config_tab = ttk.Frame(self.home_tab)
+        self.about_tab = ttk.Frame(self.home_tab)
 
-        # Place widgets and contents in Frames
-        self.projects = Button(self.contentleft, text="Projects", bg=self.appconstants.APPLICATION_BUTTON_BGCOLOR,
-                               fg=self.appconstants.APPLICATION_BUTTON_FGCOLOR,
-                               font=self.appconstants.APPLICATION_BUTTON_FONT_UNDERLINE)
-        self.projects.grid(row=1, column=0, sticky=E + W)
-        self.newproject = Button(self.contentleft, text="New Project", bg=self.appconstants.APPLICATION_BUTTON_BGCOLOR,
-                                 fg=self.appconstants.APPLICATION_BUTTON_FGCOLOR,
-                                 font=self.appconstants.APPLICATION_BUTTON_FONT_UNDERLINE)
-        self.newproject.grid(row=2, column=0, sticky=E + W)
-        self.configuration = Button(self.contentleft, text="Configuration",
-                                    bg=self.appconstants.APPLICATION_BUTTON_BGCOLOR,
-                                    fg=self.appconstants.APPLICATION_BUTTON_FGCOLOR,
-                                    font=self.appconstants.APPLICATION_BUTTON_FONT_UNDERLINE,
-                                    command=self.func_configuration)
-        self.configuration.grid(row=3, column=0, sticky=E + W)
-        self.configuration = Button(self.contentleft, text="About", bg=self.appconstants.APPLICATION_BUTTON_BGCOLOR,
-                                    fg=self.appconstants.APPLICATION_BUTTON_FGCOLOR,
-                                    font=self.appconstants.APPLICATION_BUTTON_FONT_UNDERLINE)
-        self.configuration.grid(row=4, column=0, sticky=E + W)
+        self.home_tab.add(self.projects_tab, text=self.appconstants.HOME_TAB_PROJECTS)
+        self.home_tab.add(self.newproject_tab, text=self.appconstants.HOME_TAB_NEWPROJECT)
+        self.home_tab.add(self.config_tab, text=self.appconstants.HOME_TAB_CONFIGURATION)
+        self.home_tab.add(self.about_tab, text=self.appconstants.HOME_TAB_ABOUT)
 
-    def func_configuration(self):
-        # Place Frames
-        self.contentrighttop.pack(fill=X)
+        self.build_projects_frame()
+        self.build_new_project_frame()
+        self.build_configuration_frame()
+        self.build_about_frame()
 
-        # Place widgets and contents in Frames
-        self.projects = ttk.Button(self.contentrighttop, text="System Models")
-        self.projects.grid(row=1, column=1, sticky=W)
-        self.newproject = ttk.Button(self.contentrighttop, text="Data Domain")
-        self.newproject.grid(row=1, column=3, sticky=W)
-        self.configuration = ttk.Button(self.contentrighttop, text="Data Object Registry")
-        self.configuration.grid(row=1, column=5, sticky=W)
+        self.home_tab.pack(expand=1, fill="both")
+
+    def build_projects_frame(self):
+        ttk.Label(self.projects_tab, text="This is Projects").grid(column=0, row=0, padx=10, pady=10)
+
+    def build_new_project_frame(self):
+        ttk.Label(self.newproject_tab, text="This is New Project").grid(column=0, row=0, padx=10, pady=10)
+
+    def build_configuration_frame(self):
+        ttk.Label(self.config_tab, text="This is Configuration").grid(column=0, row=0, padx=10, pady=10)
+
+    def build_about_frame(self):
+        ttk.Label(self.about_tab, text="This is About").grid(column=0, row=0, padx=10, pady=10)

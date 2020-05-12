@@ -14,6 +14,6 @@ def check_application_installation_Status(sessiondetails):
     return appdbexists
 
 
-def install_sdv(sessiondetails):
+def install(sessiondetails):
     connection = Connection(sessiondetails)
-    connection.install_sdv()
+    connection.install()

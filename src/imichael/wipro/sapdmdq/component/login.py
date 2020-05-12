@@ -10,7 +10,7 @@ from imichael.wipro.sapdmdq.services.services import *
 from imichael.wipro.sapdmdq.utilities.applicationconstants import ApplicationConstants
 
 
-class SAPDataValidationLogin(ApplicationWindowTemplate):
+class SAPDMDQLogin(ApplicationWindowTemplate):
     def __init__(self, master):
         # Build Frame from Parent
         super().__init__(master)
@@ -19,7 +19,7 @@ class SAPDataValidationLogin(ApplicationWindowTemplate):
         self.show_header_message(self.appconstants.APPLICATION_HEADER_FRAME_LABEL)
 
         # Build Content Frame
-        self.loginwelcome = ttk.Label(self.content, text="Connect to Staging Datasource (MS SQL Server)",
+        self.loginwelcome = ttk.Label(self.content, text="Connect to Staging Datasource (Microsoft SQL Server)",
                                       style='Content.TLabel')
         self.loginwelcome.place(x=165, y=30)
 
@@ -153,7 +153,7 @@ def main():
         if messagebox.askokcancel("Quit", "Do you want to quit?"):
             root.destroy()
 
-    app = SAPDataValidationLogin(root)
+    app = SAPDMDQLogin(root)
     appconstants = ApplicationConstants()
     root.title(appconstants.APPLICATION_TITLE)
     # root.iconbitmap(appconstants.APPLICATION_ICON)

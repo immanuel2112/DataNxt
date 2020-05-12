@@ -1,8 +1,7 @@
 class ApplicationConstants:
     def __init__(self):
-        self.APPLICATION_TITLE = "SAP Data Migration - DQA Installer - Wipro Limited"
+        self.APPLICATION_TITLE = "SAP Data Migration - Data Quality Assessment - Wipro Limited"
         self.APPLICATION_WIPRO_LOGO = "..\..\..\icons\wiprologo.jpg"
-        self.APPLICATION_ICON = "..\..\..\icons\wiprologo.ico"
         self.APPLICATION_LOGIN_GEOMETRY = "660x400+450+200"
         self.APPLICATION_HEADER_FRAME_BGCOLOR = "#1A99A2"
         self.APPLICATION_CONTENT_FRAME_BGCOLOR = "#47B6BE"
@@ -32,3 +31,8 @@ class ApplicationConstants:
         self.APPLICATION_MESSAGEBOX_TYPE_WARNING = "Warning"
         self.APPLICATION_HOME_HEADER_FRAME_LABEL = "SAP Data Migration - Data Quality Assessment"
         self.APPLICATION_INSTALL_HEADER_FRAME_LABEL = "SAP Data Migration - Data Quality Assessment"
+
+        self.HOME_TAB_PROJECTS = "Projects"
+        self.HOME_TAB_NEWPROJECT = "New Project"
+        self.HOME_TAB_CONFIGURATION = "Configuration"
+        self.HOME_TAB_ABOUT = "About"

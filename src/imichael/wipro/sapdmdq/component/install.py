@@ -25,8 +25,6 @@ class Install(ApplicationWindowTemplate):
 
         self.master.geometry(self.appconstants.APPLICATION_HOME_GEOMETRY)
         self.master.title(self.appconstants.APPLICATION_TITLE)
-        self.master.iconbitmap(self.appconstants.APPLICATION_ICON)
-        self.master.geometry(self.appconstants.APPLICATION_HOME_GEOMETRY)
         self.master.protocol("WM_DELETE_WINDOW", on_closing)
         self.master.mainloop()
 
@@ -39,12 +37,12 @@ class Install(ApplicationWindowTemplate):
 
     def on_install(self):
         if messagebox.askokcancel("Confirmation",
-                                  "This will install SAP Data Validation components in the logged in database server. "
+                                  "This will install SAP Data Migration DQ components in the logged in database server. "
                                   "Do you wish to proceed?"):
             self.sessiondetails.setLog(self.log)
             self.install.config(state='disabled')
             self.sessiondetails.writeToLog(msg="Invoking installation procedure: ")
-            install_sdv(self.sessiondetails)
+            install(self.sessiondetails)
             error_lines = self.sessiondetails.getError_Lines()
             for i in error_lines:
                 self.highlight_text(tag_name='tag'+str(error_lines[i-1]),
