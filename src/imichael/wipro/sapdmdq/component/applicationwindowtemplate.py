@@ -1,6 +1,4 @@
-from tkinter import *
-from tkinter import messagebox
-from tkinter import ttk
+from tkinter import messagebox, ttk, X, BOTH, Text
 
 from imichael.wipro.sapdmdq.utilities.applicationconstants import ApplicationConstants
 

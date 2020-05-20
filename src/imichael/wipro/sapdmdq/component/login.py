@@ -1,12 +1,10 @@
-from tkinter import *
-from tkinter import messagebox
-from tkinter import ttk
+from tkinter import messagebox, ttk, StringVar, Button, Tk
 
 from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
 from imichael.wipro.sapdmdq.component.home import Home
 from imichael.wipro.sapdmdq.component.install import Install
 from imichael.wipro.sapdmdq.model.sessiondetails import SessionDetails
-from imichael.wipro.sapdmdq.services.services import *
+from imichael.wipro.sapdmdq.services.services import test_connection, check_application_installation_Status
 from imichael.wipro.sapdmdq.utilities.applicationconstants import ApplicationConstants
 
 
@@ -91,7 +89,7 @@ class SAPDMDQLogin(ApplicationWindowTemplate):
             self.show_error()
         else:
             self.error = test_connection(self.sessiondetails)
-
+    
             if self.error != "":
                 self.show_error()
                 self.reset_to_default()
@@ -99,12 +97,13 @@ class SAPDMDQLogin(ApplicationWindowTemplate):
                 if check_application_installation_Status(self.sessiondetails):
                     self.master.destroy()
                     homepage = Tk()
-                    app = Home(homepage, self.sessiondetails)
+                    Home(homepage, self.sessiondetails)
                 else:
                     self.master.destroy()
                     installpage = Tk()
-                    app = Install(installpage, self.sessiondetails)
-
+                    Install(installpage, self.sessiondetails)
+    
+    
     def func_validate(self):
         if len(self.sessiondetails.getHost()) == 0:
             self.error = "Please enter server name."
@@ -113,38 +112,6 @@ class SAPDMDQLogin(ApplicationWindowTemplate):
         elif self.sessiondetails.isWindowsAuthenticated() != 1 and len(self.sessiondetails.getPassword()) == 0:
             self.error = "Please enter password."
 
-def func_connect(self):
-    self.sessiondetails = SessionDetails(self.servernametxt.get(), self.authenticationopt.get(),
-                                         self.useridtxt.get(), self.passwordtxt.get())
-    # self.func_unit_test()
-    # Validate Input Fields
-    self.func_validate()
-    if self.error != "":
-        self.show_error()
-    else:
-        self.error = test_connection(self.sessiondetails)
-
-        if self.error != "":
-            self.show_error()
-            self.reset_to_default()
-        else:
-            if check_application_installation_Status(self.sessiondetails):
-                self.master.destroy()
-                homepage = Tk()
-                app = Home(homepage, self.sessiondetails)
-            else:
-                self.master.destroy()
-                installpage = Tk()
-                app = Install(installpage, self.sessiondetails)
-
-
-def func_validate(self):
-    if len(self.sessiondetails.getHost()) == 0:
-        self.error = "Please enter server name."
-    elif self.sessiondetails.isWindowsAuthenticated() != 1 and len(self.sessiondetails.getUser()) == 0:
-        self.error = "Please enter user id."
-    elif self.sessiondetails.isWindowsAuthenticated() != 1 and len(self.sessiondetails.getPassword()) == 0:
-        self.error = "Please enter password."
 
 def main():
     root = Tk()
@@ -153,14 +120,15 @@ def main():
         if messagebox.askokcancel("Quit", "Do you want to quit?"):
             root.destroy()
 
-    app = SAPDMDQLogin(root)
+    SAPDMDQLogin(root)
     appconstants = ApplicationConstants()
     root.title(appconstants.APPLICATION_TITLE)
     # root.iconbitmap(appconstants.APPLICATION_ICON)
     root.geometry(appconstants.APPLICATION_LOGIN_GEOMETRY)
-    root.resizable(False,False)
+    root.resizable(False, False)
     root.protocol("WM_DELETE_WINDOW", on_closing)
     root.mainloop()
+
 
 if __name__ == '__main__':
     main()

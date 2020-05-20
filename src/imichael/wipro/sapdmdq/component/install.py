@@ -1,9 +1,7 @@
-from tkinter import *
-from tkinter import messagebox
-from tkinter import ttk
+from tkinter import messagebox, ttk, X, BOTH
 
 from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
-from imichael.wipro.sapdmdq.services.services import *
+from imichael.wipro.sapdmdq.services.services import install
 
 
 class Install(ApplicationWindowTemplate):

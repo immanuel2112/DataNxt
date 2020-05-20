@@ -1,5 +1,4 @@
-from tkinter import messagebox
-from tkinter import ttk
+from tkinter import messagebox, ttk
 
 from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
 
@@ -8,6 +7,12 @@ class Home(ApplicationWindowTemplate):
     def __init__(self, master, sessiondetails):
         # Build Frame from Parent
         super().__init__(master)
+        self.home_tab = ttk.Notebook(self.master)
+        self.projects_tab = ttk.Frame(self.home_tab)
+        self.newproject_tab = ttk.Frame(self.home_tab)
+        self.config_tab = ttk.Frame(self.home_tab)
+        self.about_tab = ttk.Frame(self.home_tab)
+
         self.sessiondetails = sessiondetails
         self.content.destroy()
 
@@ -24,13 +29,6 @@ class Home(ApplicationWindowTemplate):
         self.master.mainloop()
 
     def show_content_frame(self):
-        self.home_tab = ttk.Notebook(self.master)
-        #PROJECTS_TAB
-        self.projects_tab = ttk.Frame(self.home_tab)
-        self.newproject_tab = ttk.Frame(self.home_tab)
-        self.config_tab = ttk.Frame(self.home_tab)
-        self.about_tab = ttk.Frame(self.home_tab)
-
         self.home_tab.add(self.projects_tab, text=self.appconstants.HOME_TAB_PROJECTS)
         self.home_tab.add(self.newproject_tab, text=self.appconstants.HOME_TAB_NEWPROJECT)
         self.home_tab.add(self.config_tab, text=self.appconstants.HOME_TAB_CONFIGURATION)
