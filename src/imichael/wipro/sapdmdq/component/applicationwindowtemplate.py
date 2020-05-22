@@ -49,10 +49,6 @@ class ApplicationWindowTemplate(object):
         # Build Header Frame
         self.headermessagelbl = ttk.Label(self.header, text=text, style='Header.TLabel')
         self.headermessagelbl.pack()
-        # self.headermessagelbl.place(x=260,y=60)
-        # self.header_image= ImageTk.PhotoImage(Image.open(self.appconstants.APPLICATION_WIPRO_LOGO))
-        # self.header_image_lbl=Label(self.header, image=self.header_image)
-        # self.header_image_lbl.place(x=450, y=5)
 
     def show_error(self):
         messagebox.showerror(self.appconstants.APPLICATION_MESSAGEBOX_TYPE_ERROR, self.error)
