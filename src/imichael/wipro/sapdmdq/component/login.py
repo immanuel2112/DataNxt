@@ -1,4 +1,4 @@
-from tkinter import messagebox, ttk, StringVar, Button, Tk
+from tkinter import messagebox, ttk, StringVar, Button, Tk, X, BOTH
 
 from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
 from imichael.wipro.sapdmdq.component.home import Home
@@ -16,10 +16,12 @@ class SAPDMDQLogin(ApplicationWindowTemplate):
         # Build Header Frame Label with Message
         self.show_header_message(self.appconstants.APPLICATION_HEADER_FRAME_LABEL)
 
+        self.content = ttk.Frame(self.master, style='Content.TFrame')
+
         # Build Content Frame
         self.loginwelcome = ttk.Label(self.content, text="Connect to Staging Datasource (Microsoft SQL Server)",
                                       style='Content.TLabel')
-        self.loginwelcome.place(x=165, y=30)
+        self.loginwelcome.place(x=150, y=30)
 
         self.servernamelbl = ttk.Label(self.content, text="Server name", style='Content.TLabel',
                                        width=self.appconstants.APPLICATION_LABEL_WIDTH)
@@ -69,6 +71,9 @@ class SAPDMDQLogin(ApplicationWindowTemplate):
         self.connectbtn = Button(self.content, text="Connect", width=self.appconstants.APPLICATION_BUTTON_WIDTH,
                                  command=self.func_connect)
         self.connectbtn.place(x=300, y=230)
+
+        self.header.pack(fill=X)
+        self.content.pack(fill=BOTH, expand=True)
 
     def func_change_authentication(self):
         if self.authenticationopt.get() == self.appconstants.APPLICATION_AUTHENTICATION_WINDOWS:

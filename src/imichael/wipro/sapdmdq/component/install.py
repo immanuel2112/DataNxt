@@ -1,4 +1,4 @@
-from tkinter import messagebox, ttk, X, BOTH
+from tkinter import messagebox, ttk, X, BOTH, Text
 
 from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
 from imichael.wipro.sapdmdq.services.services import install
@@ -9,10 +9,12 @@ class Install(ApplicationWindowTemplate):
         # Build Frame from Parent
         super().__init__(master)
         self.sessiondetails = sessiondetails
-        self.content.destroy()
 
         # Build Header Frame Label with Message
         self.show_header_message(self.appconstants.APPLICATION_INSTALL_HEADER_FRAME_LABEL)
+
+        self.install_frame = ttk.Frame(self.master, style='Content.TFrame')
+        self.log = Text(self.install_frame, state='disabled')
 
         # Build Content Frame Structure
         self.show_content_frame()

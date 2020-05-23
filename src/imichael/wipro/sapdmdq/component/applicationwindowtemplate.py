@@ -1,4 +1,4 @@
-from tkinter import messagebox, ttk, X, BOTH, Text
+from tkinter import messagebox, ttk
 
 from imichael.wipro.sapdmdq.utilities.applicationconstants import ApplicationConstants
 
@@ -35,15 +35,7 @@ class ApplicationWindowTemplate(object):
 
         # Define Frames
         self.header = ttk.Frame(self.master, style='Header.TFrame')
-        self.content = ttk.Frame(self.master, style='Content.TFrame')
-        self.contentleft = ttk.Frame(self.content, style='Content.TFrame')
-        self.contentright = ttk.Frame(self.content)
-        self.contentrighttop = ttk.Frame(self.contentright, height=20, style='ContentRTop.TFrame')
-        self.install_frame = ttk.Frame(self.master, style='Content.TFrame')
 
-        self.header.pack(fill=X)
-        self.content.pack(fill=BOTH, expand=True)
-        self.log = Text(self.install_frame, state='disabled')
 
     def show_header_message(self, text):
         # Build Header Frame

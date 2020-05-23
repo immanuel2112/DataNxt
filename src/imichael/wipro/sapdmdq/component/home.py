@@ -1,4 +1,4 @@
-from tkinter import messagebox, ttk
+from tkinter import messagebox, ttk, X
 
 from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
 
@@ -14,10 +14,11 @@ class Home(ApplicationWindowTemplate):
         self.about_tab = ttk.Frame(self.home_tab)
 
         self.sessiondetails = sessiondetails
-        self.content.destroy()
 
         # Build Content Frame Structure
         self.show_content_frame()
+
+        self.header.pack(fill=X)
 
         def on_closing():
             if messagebox.askokcancel("Quit", "Do you want to quit?"):
