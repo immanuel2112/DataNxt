@@ -1,5 +1,5 @@
 import requests
-from shareplum import Office365
+import shareplum
 
 config = dict()
 config['sp_user'] = 'partner.immanuel.michael@philips.com'
@@ -18,7 +18,7 @@ doc_library = config['sp_doc_library']
 file_name = "Pic1.JPG"
 
 # Obtain auth cookie
-authcookie = Office365(base_path, username=username, password=password).GetCookies()
+authcookie = shareplum.Office365(base_path, username=username, password=password).GetCookies()
 session = requests.Session()
 session.cookies = authcookie
 session.headers.update({'user-agent': 'python_bite/v1'})
