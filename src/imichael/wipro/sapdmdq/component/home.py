@@ -1,4 +1,4 @@
-from tkinter import messagebox, ttk, X, BOTH, VERTICAL
+from tkinter import messagebox, ttk, X
 
 from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
 
