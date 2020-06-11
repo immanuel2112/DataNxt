@@ -32,6 +32,10 @@ class ApplicationWindowTemplate(object):
                         background=self.appconstants.APPLICATION_CONTENT_LABEL_BGCOLOR)
         style.configure('ContentRTop.TFrame',
                         background=self.appconstants.APPLICATION_CONTENT_FRAME_BGCOLOR)
+        style.configure('ContentMenuFrame.TFrame',
+                        background=self.appconstants.APPLICATION_CONTENT_MENU_FRAME_BGCOLOR)
+        style.configure('ContentDisplayFrame.TFrame',
+                        background=self.appconstants.APPLICATION_CONTENT_DISPLAY_FRAME_BGCOLOR)
 
         # Define Frames
         self.header = ttk.Frame(self.master, style='Header.TFrame')

@@ -35,4 +35,8 @@ class ApplicationConstants:
         self.HOME_TAB_PROJECTS = "Projects"
         self.HOME_TAB_NEWPROJECT = "New Project"
         self.HOME_TAB_CONFIGURATION = "Configuration"
+        self.HOME_TAB_ADMIN = "Admin"
         self.HOME_TAB_ABOUT = "About"
+
+        self.APPLICATION_CONTENT_MENU_FRAME_BGCOLOR = "#1A99A2"
+        self.APPLICATION_CONTENT_DISPLAY_FRAME_BGCOLOR = "#47B6BE"

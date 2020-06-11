@@ -1,4 +1,4 @@
-from tkinter import messagebox, ttk, X
+from tkinter import messagebox, ttk, X, BOTH, VERTICAL
 
 from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
 
@@ -9,8 +9,9 @@ class Home(ApplicationWindowTemplate):
         super().__init__(master)
         self.home_tab = ttk.Notebook(self.master)
         self.projects_tab = ttk.Frame(self.home_tab)
-        self.newproject_tab = ttk.Frame(self.home_tab)
+        self.new_project_tab = ttk.Frame(self.home_tab)
         self.config_tab = ttk.Frame(self.home_tab)
+        self.admin_tab = ttk.Frame(self.home_tab)
         self.about_tab = ttk.Frame(self.home_tab)
 
         self.sessiondetails = sessiondetails
@@ -31,13 +32,15 @@ class Home(ApplicationWindowTemplate):
 
     def show_content_frame(self):
         self.home_tab.add(self.projects_tab, text=self.appconstants.HOME_TAB_PROJECTS)
-        self.home_tab.add(self.newproject_tab, text=self.appconstants.HOME_TAB_NEWPROJECT)
+        self.home_tab.add(self.new_project_tab, text=self.appconstants.HOME_TAB_NEWPROJECT)
         self.home_tab.add(self.config_tab, text=self.appconstants.HOME_TAB_CONFIGURATION)
+        self.home_tab.add(self.admin_tab, text=self.appconstants.HOME_TAB_ADMIN)
         self.home_tab.add(self.about_tab, text=self.appconstants.HOME_TAB_ABOUT)
 
         self.build_projects_frame()
         self.build_new_project_frame()
         self.build_configuration_frame()
+        self.build_admin_frame()
         self.build_about_frame()
 
         self.home_tab.pack(expand=1, fill="both")
@@ -46,10 +49,19 @@ class Home(ApplicationWindowTemplate):
         ttk.Label(self.projects_tab, text="This is Projects").grid(column=0, row=0, padx=10, pady=10)
 
     def build_new_project_frame(self):
-        ttk.Label(self.newproject_tab, text="This is New Project").grid(column=0, row=0, padx=10, pady=10)
+        ttk.Label(self.new_project_tab, text="This is New Project").grid(column=0, row=0, padx=10, pady=10)
 
     def build_configuration_frame(self):
-        ttk.Label(self.config_tab, text="This is Configuration").grid(column=0, row=0, padx=10, pady=10)
+        self.config_menu_tab = ttk.Frame(self.config_tab)
+        self.config_display_tab = ttk.Frame(self.config_tab)
+        self.config_menu_tab.grid(column=0, row=0)
+        self.config_display_tab.grid(column=1, row=0)
+
+        self.sys_model_btn = ttk.Button(self.config_menu_tab, text="System Model")
+        self.sys_model_btn.pack(fill=X)
+
+    def build_admin_frame(self):
+        ttk.Label(self.admin_tab, text="This is Admin").grid(column=0, row=0, padx=10, pady=10)
 
     def build_about_frame(self):
         ttk.Label(self.about_tab, text="This is About").grid(column=0, row=0, padx=10, pady=10)
