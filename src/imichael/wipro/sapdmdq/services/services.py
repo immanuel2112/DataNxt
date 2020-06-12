@@ -17,3 +17,9 @@ def check_application_installation_Status(sessiondetails):
 def install(sessiondetails):
     connection = Connection(sessiondetails)
     connection.install()
+
+def get_sys_models(sessiondetails):
+    connection = Connection(sessiondetails)
+    sys_models = connection.get_sys_models()
+    print("sys_models: " + str(sys_models))
+    return sys_models

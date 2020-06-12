@@ -85,3 +85,23 @@ class Connection:
         except (Exception) as error:
             errormessage = str(error)
             self.sessiondetails.writeToLog(msg=errormessage, error=True)
+
+    def get_sys_models(self):
+        returnvalue = {}
+        self.connection = pyodbc.connect(self.connection_string)
+        cursor = self.connection.cursor()
+
+        query = queryconstants.GET_SYS_MODEL_VIEW_COLUMNS.format(
+            DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=queryconstants.CONFIGURATION_SYS_MODEL_VIEW)
+        header_row = cursor.execute(query).fetchall()
+        returnvalue["header"] = header_row
+
+        cursor = self.connection.cursor()
+        query = queryconstants.GET_SYS_MODEL.format(
+            DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=queryconstants.CONFIGURATION_SYS_MODEL_VIEW)
+        data_row = cursor.execute(query).fetchall()
+        returnvalue["data"] = data_row
+
+        cursor.close()
+        self.connection.close()
+        return returnvalue

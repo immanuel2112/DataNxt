@@ -38,5 +38,11 @@ class ApplicationConstants:
         self.HOME_TAB_ADMIN = "Admin"
         self.HOME_TAB_ABOUT = "About"
 
+        self.SYSTEM_MODEL = "System Model"
+        self.DATA_DOMAINS = "Data Domains"
+        self.DOR = "Data Object Register (DOR)"
+        self.SECURITY = "Security"
+        self.UPGRADE = "Upgrade"
+
         self.APPLICATION_CONTENT_MENU_FRAME_BGCOLOR = "#1A99A2"
         self.APPLICATION_CONTENT_DISPLAY_FRAME_BGCOLOR = "#47B6BE"
