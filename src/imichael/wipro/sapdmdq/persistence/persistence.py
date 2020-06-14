@@ -1,6 +1,7 @@
 import pypyodbc as pyodbc
 
 from imichael.wipro.sapdmdq.persistence import queryconstants
+from imichael.wipro.sapdmdq.utilities import applicationutility
 
 
 class Connection:
@@ -94,13 +95,15 @@ class Connection:
         query = queryconstants.GET_SYS_MODEL_VIEW_COLUMNS.format(
             DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=queryconstants.CONFIGURATION_SYS_MODEL_VIEW)
         header_row = cursor.execute(query).fetchall()
-        returnvalue["header"] = header_row
+        formatted_header_row = applicationutility.convertResultSetToList(header_row)
+        returnvalue["header"] = formatted_header_row
 
         cursor = self.connection.cursor()
         query = queryconstants.GET_SYS_MODEL.format(
             DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=queryconstants.CONFIGURATION_SYS_MODEL_VIEW)
         data_row = cursor.execute(query).fetchall()
-        returnvalue["data"] = data_row
+        formatted_data_row = applicationutility.convertResultSetToList(data_row)
+        returnvalue["data"] = formatted_data_row
 
         cursor.close()
         self.connection.close()

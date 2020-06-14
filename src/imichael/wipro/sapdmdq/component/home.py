@@ -1,4 +1,4 @@
-from tkinter import messagebox, ttk, X, BOTH
+from tkinter import messagebox, ttk, X, BOTH, TOP
 
 from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
 from imichael.wipro.sapdmdq.services.services import get_sys_models
@@ -81,7 +81,7 @@ class Home(ApplicationWindowTemplate):
         self.title.pack()
 
         sys_models_data = get_sys_models(self.sessiondetails)
-        header_columns = tuple(sys_models_data["header"])
+        header_columns = sys_models_data["header"]
         print(header_columns)
 
         self.config_display_output_window.pack(fill=BOTH, expand=1)
