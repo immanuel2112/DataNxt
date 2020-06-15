@@ -6,7 +6,6 @@ def convert_resultset_to_list(resultset):
     for record in resultset:
         for data in record:
             result.append(data)
-            print(data)
     return result
 
 

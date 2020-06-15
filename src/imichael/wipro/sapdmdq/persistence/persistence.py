@@ -100,7 +100,6 @@ class Connection:
         formatted_header_row = applicationutility.convert_resultset_to_list(header_row)
         returnvalue[self.appconstants.TABLE_HEADER] = formatted_header_row
 
-        cursor = self.connection.cursor()
         query = queryconstants.GET_SYS_MODEL.format(
             DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=queryconstants.CONFIGURATION_SYS_MODEL_VIEW)
         data_row = cursor.execute(query).fetchall()
