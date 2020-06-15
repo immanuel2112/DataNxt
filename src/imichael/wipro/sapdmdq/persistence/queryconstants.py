@@ -16,14 +16,15 @@ DATABASE_COLLATE_PROPERTY = textwrap.dedent(
 DATABASE_ENABLE_BROKER_PROPERTY = textwrap.dedent(""" ALTER DATABASE [{DatabaseName}] SET ENABLE_BROKER """)
 
 GET_SYS_MODEL = textwrap.dedent("""
-                                    SELECT     [sys_model_id] 
+                                    SELECT   TOP 100 PERCENT [sys_model_id] 
                                               ,[sys_model]
                                               ,[sys_model_description]
                                               ,[added_by]
                                               ,[added_on]
                                               ,[changed_by]
                                               ,[changed_on] 
-                                    FROM {DatabaseName}.dbo.{Object}
+                                    FROM {DatabaseName}.dbo.{Object} 
+                                    ORDER BY [added_on] ASC
                                 """)
 
 GET_SYS_MODEL_VIEW_COLUMNS = textwrap.dedent("""

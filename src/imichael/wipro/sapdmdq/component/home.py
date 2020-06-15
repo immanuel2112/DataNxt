@@ -2,6 +2,7 @@ from tkinter import messagebox, ttk, X, BOTH, TOP
 
 from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
 from imichael.wipro.sapdmdq.services.services import get_sys_models
+from imichael.wipro.sapdmdq.utilities import applicationutility
 
 class Home(ApplicationWindowTemplate):
     def __init__(self, master, sessiondetails):
@@ -13,13 +14,6 @@ class Home(ApplicationWindowTemplate):
         self.config_tab = ttk.Frame(self.home_tab)
         self.admin_tab = ttk.Frame(self.home_tab)
         self.about_tab = ttk.Frame(self.home_tab)
-
-        # Frames for Configuration tab
-        self.config_menu_window = ttk.Frame(self.config_tab, style='Header.TFrame', borderwidth=2)
-        self.config_display_window = ttk.Frame(self.config_tab, style='Content.TFrame', borderwidth=2)
-        self.config_display_title_window = ttk.Frame(self.config_tab, style='Header.TFrame', borderwidth=2)
-        self.config_display_output_window = ttk.Frame(self.config_tab, style='Content.TFrame', borderwidth=2)
-
         self.sessiondetails = sessiondetails
 
         self.header.destroy()
@@ -58,6 +52,12 @@ class Home(ApplicationWindowTemplate):
         ttk.Label(self.new_project_tab, text="This is New Project").grid(column=0, row=0, padx=10, pady=10)
 
     def build_configuration_frame(self):
+        # Frames for Configuration tab
+        self.config_menu_window = ttk.Frame(self.config_tab, style='Header.TFrame', borderwidth=2)
+        self.config_display_window = ttk.Frame(self.config_tab, style='Content.TFrame', borderwidth=2)
+        self.config_display_title_window = ttk.Frame(self.config_display_window, style='Header.TFrame', borderwidth=2)
+        self.config_display_output_window = ttk.Frame(self.config_display_window, style='Content.TFrame', borderwidth=2)
+
         self.config_menu_window.pack(fill=X)
         self.config_display_window.pack(fill=BOTH, expand=1)
 
@@ -76,14 +76,16 @@ class Home(ApplicationWindowTemplate):
         self.upgrade_btn.grid(column=4, row=0, padx=5)
 
     def show_sys_models(self):
+
+        title = ttk.Label(self.config_display_title_window, text=self.appconstants.SYSTEM_MODEL, style='Header.TLabel')
+        title.pack(side=TOP, fill=X)
         self.config_display_title_window.pack(fill=X)
-        self.title = ttk.Label(self.config_display_title_window, text=self.appconstants.SYSTEM_MODEL, style='Header.TLabel')
-        self.title.pack()
 
         sys_models_data = get_sys_models(self.sessiondetails)
-        header_columns = sys_models_data["header"]
-        print(header_columns)
+        display_sys_models_tree = ttk.Treeview(self.config_display_output_window)
+        applicationutility.convert_table_result_to_tree(display_sys_models_tree, sys_models_data)
 
+        display_sys_models_tree.pack(side=TOP, fill=X)
         self.config_display_output_window.pack(fill=BOTH, expand=1)
         # self.sys_model_btn.state()
         # NLYEHVDCS4MSA51

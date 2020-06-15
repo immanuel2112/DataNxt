@@ -46,3 +46,6 @@ class ApplicationConstants:
 
         self.APPLICATION_CONTENT_MENU_FRAME_BGCOLOR = "#1A99A2"
         self.APPLICATION_CONTENT_DISPLAY_FRAME_BGCOLOR = "#47B6BE"
+
+        self.TABLE_HEADER = "TABLE_HEADER"
+        self.TABLE_DATA = "TABLE_DATA"

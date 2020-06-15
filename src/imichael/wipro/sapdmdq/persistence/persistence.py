@@ -2,12 +2,14 @@ import pypyodbc as pyodbc
 
 from imichael.wipro.sapdmdq.persistence import queryconstants
 from imichael.wipro.sapdmdq.utilities import applicationutility
+from imichael.wipro.sapdmdq.utilities.applicationconstants import ApplicationConstants
 
 
 class Connection:
     def __init__(self, sessiondetails):
         self.sessiondetails = sessiondetails
         self.buildconnectionstring()
+        self.appconstants = ApplicationConstants()
 
     def buildconnectionstring(self):
         if len(self.sessiondetails.getUser()) == 0:
@@ -95,15 +97,14 @@ class Connection:
         query = queryconstants.GET_SYS_MODEL_VIEW_COLUMNS.format(
             DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=queryconstants.CONFIGURATION_SYS_MODEL_VIEW)
         header_row = cursor.execute(query).fetchall()
-        formatted_header_row = applicationutility.convertResultSetToList(header_row)
-        returnvalue["header"] = formatted_header_row
+        formatted_header_row = applicationutility.convert_resultset_to_list(header_row)
+        returnvalue[self.appconstants.TABLE_HEADER] = formatted_header_row
 
         cursor = self.connection.cursor()
         query = queryconstants.GET_SYS_MODEL.format(
             DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=queryconstants.CONFIGURATION_SYS_MODEL_VIEW)
         data_row = cursor.execute(query).fetchall()
-        formatted_data_row = applicationutility.convertResultSetToList(data_row)
-        returnvalue["data"] = formatted_data_row
+        returnvalue[self.appconstants.TABLE_DATA] = data_row
 
         cursor.close()
         self.connection.close()
