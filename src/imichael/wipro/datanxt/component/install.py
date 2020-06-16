@@ -1,7 +1,7 @@
 from tkinter import messagebox, ttk, X, BOTH, Text
 
-from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
-from imichael.wipro.sapdmdq.services.services import install
+from imichael.wipro.datanxt.component.applicationwindowtemplate import ApplicationWindowTemplate
+from imichael.wipro.datanxt.services.services import install
 
 
 class Install(ApplicationWindowTemplate):

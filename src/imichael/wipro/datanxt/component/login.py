@@ -1,11 +1,11 @@
 from tkinter import messagebox, ttk, StringVar, Button, Tk, X, BOTH
 
-from imichael.wipro.sapdmdq.component.applicationwindowtemplate import ApplicationWindowTemplate
-from imichael.wipro.sapdmdq.component.home import Home
-from imichael.wipro.sapdmdq.component.install import Install
-from imichael.wipro.sapdmdq.model.sessiondetails import SessionDetails
-from imichael.wipro.sapdmdq.services.services import test_connection, check_application_installation_Status
-from imichael.wipro.sapdmdq.utilities.applicationconstants import ApplicationConstants
+from imichael.wipro.datanxt.component.applicationwindowtemplate import ApplicationWindowTemplate
+from imichael.wipro.datanxt.component.home import Home
+from imichael.wipro.datanxt.component.install import Install
+from imichael.wipro.datanxt.model.sessiondetails import SessionDetails
+from imichael.wipro.datanxt.services.services import test_connection, check_application_installation_Status
+from imichael.wipro.datanxt.utilities.applicationconstants import ApplicationConstants
 
 
 class SAPDMDQLogin(ApplicationWindowTemplate):
@@ -102,6 +102,7 @@ class SAPDMDQLogin(ApplicationWindowTemplate):
                 if check_application_installation_Status(self.sessiondetails):
                     self.master.destroy()
                     homepage = Tk()
+                    homepage.focus_force()
                     Home(homepage, self.sessiondetails)
                 else:
                     self.master.destroy()

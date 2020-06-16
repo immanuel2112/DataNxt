@@ -1,8 +1,9 @@
 import pypyodbc as pyodbc
 
-from imichael.wipro.sapdmdq.persistence import queryconstants
-from imichael.wipro.sapdmdq.utilities import applicationutility
-from imichael.wipro.sapdmdq.utilities.applicationconstants import ApplicationConstants
+from imichael.wipro.datanxt.model.config_models import Table
+from imichael.wipro.datanxt.persistence import queryconstants
+from imichael.wipro.datanxt.utilities import applicationutility
+from imichael.wipro.datanxt.utilities.applicationconstants import ApplicationConstants
 
 
 class Connection:
@@ -11,13 +12,13 @@ class Connection:
         self.buildconnectionstring()
         self.appconstants = ApplicationConstants()
 
-    def buildconnectionstring(self):
+    def buildconnectionstring(self) -> None:
         if len(self.sessiondetails.getUser()) == 0:
             self.connection_string = 'Driver={ODBC Driver 17 for SQL Server};Server=' + self.sessiondetails.getHost() + ';Database=master;Trusted_Connection=yes;'
         else:
             self.connection_string = 'Driver={ODBC Driver 17 for SQL Server};Server=' + self.sessiondetails.getHost() + ';Database=master;UID=' + self.sessiondetails.getUser() + ';PWD=' + self.sessiondetails.getPassword() + ';'
 
-    def test_connection(self):
+    def test_connection(self) -> str:
         errormessage = ""
         try:
             self.connection = pyodbc.connect(self.connection_string)
@@ -26,7 +27,7 @@ class Connection:
             errormessage = str(error)
         return errormessage
 
-    def check_application_installation_Status(self):
+    def check_application_installation_Status(self) -> int:
         returnvalue = 0
         self.connection = pyodbc.connect(self.connection_string)
         cursor = self.connection.cursor()
@@ -40,7 +41,7 @@ class Connection:
         self.connection.close()
         return returnvalue
 
-    def install(self):
+    def install(self) -> None:
         try:
             # Step 1: Create sdvSystemMaster database
             self.sessiondetails.writeToLog(
@@ -57,7 +58,7 @@ class Connection:
             errormessage = str(error)
             self.sessiondetails.writeToLog(msg=errormessage, error=True)
 
-    def create_database(self):
+    def create_database(self) -> None:
         try:
             connection = pyodbc.connect(self.connection_string, autocommit=True)
             cursor = connection.cursor()
@@ -89,22 +90,22 @@ class Connection:
             errormessage = str(error)
             self.sessiondetails.writeToLog(msg=errormessage, error=True)
 
-    def get_sys_models(self):
-        returnvalue = {}
+    def get_table(self, name) -> Table:
+        table = Table(name)
         self.connection = pyodbc.connect(self.connection_string)
         cursor = self.connection.cursor()
 
-        query = queryconstants.GET_SYS_MODEL_VIEW_COLUMNS.format(
-            DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=queryconstants.CONFIGURATION_SYS_MODEL_VIEW)
+        query = queryconstants.GET_OBJECT_COLUMNS.format(
+            DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=name)
         header_row = cursor.execute(query).fetchall()
         formatted_header_row = applicationutility.convert_resultset_to_list(header_row)
-        returnvalue[self.appconstants.TABLE_HEADER] = formatted_header_row
+        table.set_fields(formatted_header_row)
 
-        query = queryconstants.GET_SYS_MODEL.format(
-            DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=queryconstants.CONFIGURATION_SYS_MODEL_VIEW)
+        query = queryconstants.GET_OBJECT_DATA.format(
+            DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=name)
         data_row = cursor.execute(query).fetchall()
-        returnvalue[self.appconstants.TABLE_DATA] = data_row
+        table.set_data(data_row)
 
         cursor.close()
         self.connection.close()
-        return returnvalue
+        return table
