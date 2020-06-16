@@ -1,4 +1,4 @@
-from imichael.wipro.datanxt.model.config_models import Table
+from imichael.wipro.datanxt.model.app_models import Table
 from imichael.wipro.datanxt.persistence.persistence import Connection
 
 
@@ -20,8 +20,8 @@ def install(sessiondetails) -> None:
     connection.install()
 
 
-def get_table(sessiondetails, table_name) -> Table:
+def get_table(sessiondetails, page) -> Table:
     connection = Connection(sessiondetails)
-    table = connection.get_table(table_name)
+    table = connection.get_table(page)
     print("Table: " + str(table))
     return table

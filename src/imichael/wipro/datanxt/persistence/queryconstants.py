@@ -17,6 +17,7 @@ DATABASE_ENABLE_BROKER_PROPERTY = textwrap.dedent(""" ALTER DATABASE [{DatabaseN
 GET_OBJECT_DATA = textwrap.dedent("""
                                     SELECT   * 
                                     FROM {DatabaseName}.dbo.{Object} 
+                                    {WhereClause}
                                 """)
 
 GET_OBJECT_COLUMNS = textwrap.dedent("""

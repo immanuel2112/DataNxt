@@ -1,6 +1,6 @@
 import pypyodbc as pyodbc
 
-from imichael.wipro.datanxt.model.config_models import Table
+from imichael.wipro.datanxt.model.app_models import Table
 from imichael.wipro.datanxt.persistence import queryconstants
 from imichael.wipro.datanxt.utilities import applicationutility
 from imichael.wipro.datanxt.utilities.applicationconstants import ApplicationConstants
@@ -90,7 +90,8 @@ class Connection:
             errormessage = str(error)
             self.sessiondetails.writeToLog(msg=errormessage, error=True)
 
-    def get_table(self, name) -> Table:
+    def get_table(self, page) -> Table:
+        name = page.table
         table = Table(name)
         self.connection = pyodbc.connect(self.connection_string)
         cursor = self.connection.cursor()
@@ -101,10 +102,20 @@ class Connection:
         formatted_header_row = applicationutility.convert_resultset_to_list(header_row)
         table.set_fields(formatted_header_row)
 
+        where_clause = ""
+        if page.filter_field is not None:
+            where_clause = "WHERE "+page.filter_field+ " = '"+page.filter_field_value+"'"
+
         query = queryconstants.GET_OBJECT_DATA.format(
-            DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=name)
+            DatabaseName=queryconstants.APPLICATION_SYSTEM_DATABASE_VALUE, Object=name,
+            WhereClause=where_clause)
+
+        print(query)
         data_row = cursor.execute(query).fetchall()
         table.set_data(data_row)
+
+        if data_row is not None:
+            table.set_record_count(len(data_row))
 
         cursor.close()
         self.connection.close()

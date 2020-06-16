@@ -44,10 +44,15 @@ class ApplicationConstants:
         self.DOR = "Data Object Register (DOR)"
         self.SECURITY = "Security"
         self.UPGRADE = "Upgrade"
+        self.REFRESH = "Refresh"
+        self.ADD = "Add"
+        self.EDIT = "Edit"
+        self.DELETE = "Delete"
+        self.TOTAL_LBL = "Total Records: "
 
         self.APPLICATION_CONTENT_MENU_FRAME_BGCOLOR = "#1A99A2"
         self.APPLICATION_CONTENT_DISPLAY_FRAME_BGCOLOR = "#47B6BE"
 
         self.TABLE_SYSTEM_MODEL = "sys_model"
         self.TABLE_SYSTEM_MODEL_TABLE = "sys_model_table"
-        self.EXCLUDE_FIELDS_LIST = ["id", "added_by", "added_on", "changed_by", "changed_on"]
+        self.EXCLUDE_FIELDS_LIST = ["_id", "added_by", "added_on", "changed_by", "changed_on"]

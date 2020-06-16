@@ -1,38 +1,3 @@
-class Page:
-    def __init__(self, title, table, child_table=None, parent_child=None, events=None):
-        self.self = self
-        self.title = title
-        self.events = events
-        self.table = table
-        self.parent_child = parent_child
-        self.child_table = child_table
-
-
-class Table:
-    def __init__(self, name):
-        self.name = name
-        self.fields = None
-        self.data = None
-
-    def get_name(self):
-        return self.name
-
-    def set_name(self, name):
-        self.name = name
-
-    def get_fields(self):
-        return self.fields
-
-    def set_fields(self, fields):
-        self.fields = fields
-
-    def get_data(self):
-        return self.data
-
-    def set_data(self, data):
-        self.data = data
-
-
 class BaseObject:
 
     def __init__(self, id):
