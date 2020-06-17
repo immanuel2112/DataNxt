@@ -135,13 +135,12 @@ class Home(ApplicationWindowTemplate):
             refresh = ttk.Button(config_display_title_events, text=self.appconstants.REFRESH,
                                  command=self.show_sys_model)
             refresh.pack(side=LEFT, padx=2)
-            add_image = Image.open(self.appconstants.ADD_IMAGE)
-            add_image_tk = ImageTk.PhotoImage(add_image)
+            add_image = ImageTk.PhotoImage(file=self.appconstants.ADD_IMAGE)
             add = ttk.Button(config_display_title_events,
                              text=self.appconstants.ADD + "_" + self.page.title,
-                             image=add_image_tk, compound=LEFT)
+                             image=add_image, compound=LEFT)
             add.bind("<Button-1>", self.add)
-            add.image = add_image_tk
+            add.image = add_image
             add.pack(side=LEFT, padx=2)
             edit = ttk.Button(config_display_title_events, text=self.appconstants.EDIT)
             edit.pack(side=LEFT, padx=2)
@@ -246,3 +245,21 @@ class Home(ApplicationWindowTemplate):
 
     def build_about_frame(self):
         ttk.Label(self.about_tab, text="This is About").grid(column=0, row=0, padx=10, pady=10)
+
+    def build_display_events_pane(self):
+        config_display_title_events = ttk.Frame(self.config_display_window, style='Header.TFrame', borderwidth=2)
+        refresh = ttk.Button(config_display_title_events, text=self.appconstants.REFRESH,
+                             command=self.show_sys_model)
+        refresh.pack(side=LEFT, padx=2)
+        add_image = ImageTk.PhotoImage(file=self.appconstants.ADD_IMAGE)
+        add = ttk.Button(config_display_title_events,
+                         text=self.appconstants.ADD + "_" + self.page.title,
+                         image=add_image, compound=LEFT)
+        add.bind("<Button-1>", self.add)
+        add.image = add_image
+        add.pack(side=LEFT, padx=2)
+        edit = ttk.Button(config_display_title_events, text=self.appconstants.EDIT)
+        edit.pack(side=LEFT, padx=2)
+        delete = ttk.Button(config_display_title_events, text=self.appconstants.DELETE)
+        delete.pack(side=LEFT, padx=2)
+        config_display_title_events.pack(fill=X)
