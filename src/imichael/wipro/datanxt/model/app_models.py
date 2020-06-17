@@ -35,7 +35,16 @@ class Table:
         return self.data
 
     def set_data(self, data):
-        self.data = data
+        self.data = []
+        for records in data:
+            new_list = []
+            for record in records:
+                if (record is not None) and (str(record).startswith("b'")):
+                    record1 = record.replace("b'","").replace("'","")
+                    new_list.append(record1)
+                else:
+                    new_list.append(record)
+            self.data.append(new_list)
 
     def get_record_count(self):
         return self.record_count

@@ -8,11 +8,10 @@ from imichael.wipro.datanxt.services.services import test_connection, check_appl
 from imichael.wipro.datanxt.utilities.applicationconstants import ApplicationConstants
 
 
-class SAPDMDQLogin(ApplicationWindowTemplate):
+class DataNxtLogin(ApplicationWindowTemplate):
     def __init__(self, master):
         # Build Frame from Parent
         super().__init__(master)
-
         # Build Header Frame Label with Message
         self.show_header_message(self.appconstants.APPLICATION_HEADER_FRAME_LABEL)
 
@@ -107,6 +106,7 @@ class SAPDMDQLogin(ApplicationWindowTemplate):
                 else:
                     self.master.destroy()
                     installpage = Tk()
+                    installpage.focus_force()
                     Install(installpage, self.sessiondetails)
     
     
@@ -121,12 +121,13 @@ class SAPDMDQLogin(ApplicationWindowTemplate):
 
 def main():
     root = Tk()
+    root.focus_force()
 
     def on_closing():
         if messagebox.askokcancel("Quit", "Do you want to quit?"):
             root.destroy()
 
-    SAPDMDQLogin(root)
+    DataNxtLogin(root)
     appconstants = ApplicationConstants()
     root.title(appconstants.APPLICATION_TITLE)
     # root.iconbitmap(appconstants.APPLICATION_ICON)

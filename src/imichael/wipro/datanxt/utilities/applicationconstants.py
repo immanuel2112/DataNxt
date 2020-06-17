@@ -46,6 +46,7 @@ class ApplicationConstants:
         self.UPGRADE = "Upgrade"
         self.REFRESH = "Refresh"
         self.ADD = "Add"
+        self.ADD_IMAGE = '../../../../res/add.png'
         self.EDIT = "Edit"
         self.DELETE = "Delete"
         self.TOTAL_LBL = "Total Records: "
@@ -55,4 +56,7 @@ class ApplicationConstants:
 
         self.TABLE_SYSTEM_MODEL = "sys_model"
         self.TABLE_SYSTEM_MODEL_TABLE = "sys_model_table"
+        self.TABLE_DATA_DOMAIN = "data_domain"
+        self.TABLE_DOR = "dor"
+
         self.EXCLUDE_FIELDS_LIST = ["_id", "added_by", "added_on", "changed_by", "changed_on"]

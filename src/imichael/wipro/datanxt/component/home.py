@@ -1,4 +1,5 @@
-from tkinter import messagebox, ttk, X, BOTH, TOP, LEFT, RIGHT, VERTICAL, HORIZONTAL, NS, EW, NW, SE
+from tkinter import messagebox, ttk, X, BOTH, TOP, LEFT, RIGHT, VERTICAL, HORIZONTAL, NS, EW, NW, SE, PhotoImage
+from PIL import Image, ImageTk
 
 from imichael.wipro.datanxt.model.app_models import Page
 from imichael.wipro.datanxt.component.applicationwindowtemplate import ApplicationWindowTemplate
@@ -92,6 +93,27 @@ class Home(ApplicationWindowTemplate):
         self.build_display_frame()
         # NLYEHVDCS4MSA51
 
+    def show_domains(self):
+        print("show domains")
+        self.page = Page(title=self.appconstants.DATA_DOMAINS,
+                         events=1,
+                         table=self.appconstants.TABLE_DATA_DOMAIN)
+
+        self.build_display_frame()
+
+    def show_dor(self):
+        self.page = Page(title=self.appconstants.DOR,
+                         events=1,
+                         table=self.appconstants.TABLE_DOR)
+
+        self.build_display_frame()
+
+    def show_security(self):
+        print("show security")
+
+    def show_upgrade(self):
+        print("show upgrade")
+
     def build_display_frame(self):
         # Rebuild the display window if its already created. This is for reclick functionality
         if self.config_display_window is not None:
@@ -113,7 +135,13 @@ class Home(ApplicationWindowTemplate):
             refresh = ttk.Button(config_display_title_events, text=self.appconstants.REFRESH,
                                  command=self.show_sys_model)
             refresh.pack(side=LEFT, padx=2)
-            add = ttk.Button(config_display_title_events, text=self.appconstants.ADD)
+            add_image = Image.open(self.appconstants.ADD_IMAGE)
+            add_image_tk = ImageTk.PhotoImage(add_image)
+            add = ttk.Button(config_display_title_events,
+                             text=self.appconstants.ADD + "_" + self.page.title,
+                             image=add_image_tk, compound=LEFT)
+            add.bind("<Button-1>", self.add)
+            add.image = add_image_tk
             add.pack(side=LEFT, padx=2)
             edit = ttk.Button(config_display_title_events, text=self.appconstants.EDIT)
             edit.pack(side=LEFT, padx=2)
@@ -170,16 +198,22 @@ class Home(ApplicationWindowTemplate):
         if self.child_page.events is not None:
             config_display_child_title_events = ttk.Frame(self.config_display_child_window, style='Header.TFrame',
                                                           borderwidth=2)
-            # refresh = ttk.Button(config_display_child_title_events, text="Refresh", command=self.display_child_frame)
-            # refresh.grid(column=0, row=0, padx=2)
-            add = ttk.Button(config_display_child_title_events, text=self.appconstants.ADD)
+            # refresh = ttk.Button(config_display_child_title_events, text="Refresh")
+            # refresh.bind("<Button-1>", self.display_child_frame)
+            # refresh.pack(side=LEFT, padx=2)
+            add_image = PhotoImage(file=self.appconstants.ADD_IMAGE)
+            add = ttk.Button(config_display_child_title_events,
+                             text=self.appconstants.ADD + "_" + self.child_page.title,
+                             image=add_image, compound=LEFT)
+            add.bind("<Button-1>", self.add)
             add.pack(side=LEFT, padx=2)
             edit = ttk.Button(config_display_child_title_events, text=self.appconstants.EDIT)
             edit.pack(side=LEFT, padx=2)
             delete = ttk.Button(config_display_child_title_events, text=self.appconstants.DELETE)
             delete.pack(side=LEFT, padx=2)
             sys_model_lbl = ttk.Label(config_display_child_title_events,
-                                      text=self.appconstants.SYSTEM_MODEL +": "+selected_parent, style='Header.TLabel')
+                                      text=self.appconstants.SYSTEM_MODEL + ": " + selected_parent,
+                                      style='Header.TLabel')
             sys_model_lbl.pack(side=LEFT, padx=2)
             config_display_child_title_events.pack(fill=X)
 
@@ -204,17 +238,8 @@ class Home(ApplicationWindowTemplate):
         # Pack the contents
         self.display_child_table_tree.pack(side=TOP, fill=BOTH)
 
-    def show_domains(self):
-        print("show domains")
-
-    def show_dor(self):
-        print("show dor")
-
-    def show_security(self):
-        print("show security")
-
-    def show_upgrade(self):
-        print("show upgrade")
+    def add(self, event):
+        print("You clicked: " + str(event.widget))
 
     def build_admin_frame(self):
         ttk.Label(self.admin_tab, text="This is Admin").grid(column=0, row=0, padx=10, pady=10)
