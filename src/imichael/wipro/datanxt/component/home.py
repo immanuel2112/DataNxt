@@ -131,22 +131,7 @@ class Home(ApplicationWindowTemplate):
 
         # Build events for the table functionality if events is enabled
         if self.page.events is not None:
-            config_display_title_events = ttk.Frame(self.config_display_window, style='Header.TFrame', borderwidth=2)
-            refresh = ttk.Button(config_display_title_events, text=self.appconstants.REFRESH,
-                                 command=self.show_sys_model)
-            refresh.pack(side=LEFT, padx=2)
-            add_image = ImageTk.PhotoImage(file=self.appconstants.ADD_IMAGE)
-            add = ttk.Button(config_display_title_events,
-                             text=self.appconstants.ADD + "_" + self.page.title,
-                             image=add_image, compound=LEFT)
-            add.bind("<Button-1>", self.add)
-            add.image = add_image
-            add.pack(side=LEFT, padx=2)
-            edit = ttk.Button(config_display_title_events, text=self.appconstants.EDIT)
-            edit.pack(side=LEFT, padx=2)
-            delete = ttk.Button(config_display_title_events, text=self.appconstants.DELETE)
-            delete.pack(side=LEFT, padx=2)
-            config_display_title_events.pack(fill=X)
+            self.build_display_events_pane(self.config_display_window)
 
         # Fetch table data and build tree view with the data retrieved
         parent_data = get_table(self.sessiondetails, self.page)
@@ -195,29 +180,9 @@ class Home(ApplicationWindowTemplate):
 
         # Build events for the table functionality if events is enabled
         if self.child_page.events is not None:
-            config_display_child_title_events = ttk.Frame(self.config_display_child_window, style='Header.TFrame',
-                                                          borderwidth=2)
-            # refresh = ttk.Button(config_display_child_title_events, text="Refresh")
-            # refresh.bind("<Button-1>", self.display_child_frame)
-            # refresh.pack(side=LEFT, padx=2)
-            add_image = PhotoImage(file=self.appconstants.ADD_IMAGE)
-            add = ttk.Button(config_display_child_title_events,
-                             text=self.appconstants.ADD + "_" + self.child_page.title,
-                             image=add_image, compound=LEFT)
-            add.bind("<Button-1>", self.add)
-            add.pack(side=LEFT, padx=2)
-            edit = ttk.Button(config_display_child_title_events, text=self.appconstants.EDIT)
-            edit.pack(side=LEFT, padx=2)
-            delete = ttk.Button(config_display_child_title_events, text=self.appconstants.DELETE)
-            delete.pack(side=LEFT, padx=2)
-            sys_model_lbl = ttk.Label(config_display_child_title_events,
-                                      text=self.appconstants.SYSTEM_MODEL + ": " + selected_parent,
-                                      style='Header.TLabel')
-            sys_model_lbl.pack(side=LEFT, padx=2)
-            config_display_child_title_events.pack(fill=X)
+            self.build_display_events_pane(self.config_display_child_window, is_child=True)
 
         # Fetch table data and build tree view with the data retrieved
-        # config_display_child_window = ttk.Frame(self.config_display_child_window, style='Content.TFrame', borderwidth=2)
         child_table = get_table(self.sessiondetails, self.child_page)
         self.display_child_table_tree = ttk.Treeview(self.config_display_child_window, show="headings")
 
@@ -237,8 +202,7 @@ class Home(ApplicationWindowTemplate):
         # Pack the contents
         self.display_child_table_tree.pack(side=TOP, fill=BOTH)
 
-    def add(self, event):
-        print("You clicked: " + str(event.widget))
+    # NLYEHVDCS4MSA51
 
     def build_admin_frame(self):
         ttk.Label(self.admin_tab, text="This is Admin").grid(column=0, row=0, padx=10, pady=10)
@@ -246,20 +210,51 @@ class Home(ApplicationWindowTemplate):
     def build_about_frame(self):
         ttk.Label(self.about_tab, text="This is About").grid(column=0, row=0, padx=10, pady=10)
 
-    def build_display_events_pane(self):
-        config_display_title_events = ttk.Frame(self.config_display_window, style='Header.TFrame', borderwidth=2)
-        refresh = ttk.Button(config_display_title_events, text=self.appconstants.REFRESH,
-                             command=self.show_sys_model)
-        refresh.pack(side=LEFT, padx=2)
+    def build_display_events_pane(self, window, is_child=False):
+        config_display_title_events = ttk.Frame(window, style='Header.TFrame', borderwidth=2)
+        if not is_child:
+            refresh_image = ImageTk.PhotoImage(file=self.appconstants.REFRESH_IMAGE)
+            refresh = ttk.Button(config_display_title_events, text=self.appconstants.REFRESH,
+                                 image=refresh_image, compound=LEFT,
+                                 command=self.show_sys_model)
+            refresh.bind("<Button-1>", self.refresh)
+            refresh.image = refresh_image
+            refresh.pack(side=LEFT, padx=2)
+
         add_image = ImageTk.PhotoImage(file=self.appconstants.ADD_IMAGE)
         add = ttk.Button(config_display_title_events,
-                         text=self.appconstants.ADD + "_" + self.page.title,
+                         text=self.appconstants.ADD + ": " + self.page.title,
                          image=add_image, compound=LEFT)
         add.bind("<Button-1>", self.add)
         add.image = add_image
         add.pack(side=LEFT, padx=2)
-        edit = ttk.Button(config_display_title_events, text=self.appconstants.EDIT)
+
+        edit_image = ImageTk.PhotoImage(file=self.appconstants.EDIT_IMAGE)
+        edit = ttk.Button(config_display_title_events,
+                          text=self.appconstants.EDIT + ": " + self.page.title,
+                          image=edit_image, compound=LEFT)
+        edit.bind("<Button-1>", self.edit)
+        edit.image = edit_image
         edit.pack(side=LEFT, padx=2)
-        delete = ttk.Button(config_display_title_events, text=self.appconstants.DELETE)
+
+        delete_image = ImageTk.PhotoImage(file=self.appconstants.DELETE_IMAGE)
+        delete = ttk.Button(config_display_title_events,
+                            text=self.appconstants.DELETE + ": " + self.page.title,
+                            image=delete_image, compound=LEFT)
+        delete.bind("<Button-1>", self.delete)
+        delete.image = delete_image
         delete.pack(side=LEFT, padx=2)
+
         config_display_title_events.pack(fill=X)
+
+    def add(self, event):
+        print("You clicked: " + str(event.widget))
+
+    def edit(self, event):
+        print("You clicked: " + str(event.widget))
+
+    def delete(self, event):
+        print("You clicked: " + str(event.widget))
+
+    def refresh(self, event):
+        print("You clicked: " + str(event.widget))

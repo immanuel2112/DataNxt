@@ -46,9 +46,12 @@ class ApplicationConstants:
         self.UPGRADE = "Upgrade"
         self.REFRESH = "Refresh"
         self.ADD = "Add"
-        self.ADD_IMAGE = '../../../../res/add.png'
         self.EDIT = "Edit"
         self.DELETE = "Delete"
+        self.ADD_IMAGE = '../../../../res/add.png'
+        self.EDIT_IMAGE = '../../../../res/edit.png'
+        self.DELETE_IMAGE = '../../../../res/delete.png'
+        self.REFRESH_IMAGE = '../../../../res/refresh.png'
         self.TOTAL_LBL = "Total Records: "
 
         self.APPLICATION_CONTENT_MENU_FRAME_BGCOLOR = "#1A99A2"
