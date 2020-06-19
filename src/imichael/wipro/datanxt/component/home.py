@@ -131,7 +131,7 @@ class Home(ApplicationWindowTemplate):
 
         # Build events for the table functionality if events is enabled
         if self.page.events is not None:
-            self.build_display_events_pane(self.config_display_window)
+            self.build_display_events_pane(self.config_display_window, self.page)
 
         # Fetch table data and build tree view with the data retrieved
         parent_data = get_table(self.sessiondetails, self.page)
@@ -180,7 +180,7 @@ class Home(ApplicationWindowTemplate):
 
         # Build events for the table functionality if events is enabled
         if self.child_page.events is not None:
-            self.build_display_events_pane(self.config_display_child_window, is_child=True)
+            self.build_display_events_pane(self.config_display_child_window, self.child_page, is_child=True)
 
         # Fetch table data and build tree view with the data retrieved
         child_table = get_table(self.sessiondetails, self.child_page)
@@ -210,51 +210,87 @@ class Home(ApplicationWindowTemplate):
     def build_about_frame(self):
         ttk.Label(self.about_tab, text="This is About").grid(column=0, row=0, padx=10, pady=10)
 
-    def build_display_events_pane(self, window, is_child=False):
+    def build_display_events_pane(self, window, page, is_child=False):
         config_display_title_events = ttk.Frame(window, style='Header.TFrame', borderwidth=2)
         if not is_child:
-            refresh_image = ImageTk.PhotoImage(file=self.appconstants.REFRESH_IMAGE)
-            refresh = ttk.Button(config_display_title_events, text=self.appconstants.REFRESH,
-                                 image=refresh_image, compound=LEFT,
-                                 command=self.show_sys_model)
+            refresh_image = ImageTk.PhotoImage(file=self.appconstants.IMAGE_REFRESH)
+            refresh = ttk.Button(config_display_title_events,
+                                 image=refresh_image, compound=LEFT)
             refresh.bind("<Button-1>", self.refresh)
+            refresh.myId = page.title
             refresh.image = refresh_image
             refresh.pack(side=LEFT, padx=2)
 
-        add_image = ImageTk.PhotoImage(file=self.appconstants.ADD_IMAGE)
+        add_image = ImageTk.PhotoImage(file=self.appconstants.IMAGE_ADD)
         add = ttk.Button(config_display_title_events,
-                         text=self.appconstants.ADD + ": " + self.page.title,
                          image=add_image, compound=LEFT)
         add.bind("<Button-1>", self.add)
+        add.myId = page.title
         add.image = add_image
         add.pack(side=LEFT, padx=2)
 
-        edit_image = ImageTk.PhotoImage(file=self.appconstants.EDIT_IMAGE)
+        edit_image = ImageTk.PhotoImage(file=self.appconstants.IMAGE_EDIT)
         edit = ttk.Button(config_display_title_events,
-                          text=self.appconstants.EDIT + ": " + self.page.title,
                           image=edit_image, compound=LEFT)
         edit.bind("<Button-1>", self.edit)
+        edit.myId = page.title
         edit.image = edit_image
         edit.pack(side=LEFT, padx=2)
 
-        delete_image = ImageTk.PhotoImage(file=self.appconstants.DELETE_IMAGE)
+        delete_image = ImageTk.PhotoImage(file=self.appconstants.IMAGE_DELETE)
         delete = ttk.Button(config_display_title_events,
-                            text=self.appconstants.DELETE + ": " + self.page.title,
                             image=delete_image, compound=LEFT)
         delete.bind("<Button-1>", self.delete)
+        delete.myId = page.title
         delete.image = delete_image
         delete.pack(side=LEFT, padx=2)
 
         config_display_title_events.pack(fill=X)
 
     def add(self, event):
-        print("You clicked: " + str(event.widget))
+        event_name = str(event.widget.myId)
+        print("You clicked: " + event_name)
+        if event_name == self.appconstants.SYSTEM_MODEL:
+            print("You clicked: " + event_name)
+        elif event_name == self.appconstants.SYSTEM_MODEL_TABLE:
+            print("You clicked: " + event_name)
+        elif event_name == self.appconstants.DATA_DOMAINS:
+            print("You clicked: " + event_name)
+        elif event_name == self.appconstants.DOR:
+            print("You clicked: " + event_name)
 
     def edit(self, event):
-        print("You clicked: " + str(event.widget))
+        event_name = str(event.widget.myId)
+        print("You clicked: " + event_name)
+        if event_name == self.appconstants.SYSTEM_MODEL:
+            print("You clicked: " + event_name)
+        elif event_name == self.appconstants.SYSTEM_MODEL_TABLE:
+            print("You clicked: " + event_name)
+        elif event_name == self.appconstants.DATA_DOMAINS:
+            print("You clicked: " + event_name)
+        elif event_name == self.appconstants.DOR:
+            print("You clicked: " + event_name)
 
     def delete(self, event):
-        print("You clicked: " + str(event.widget))
+        event_name = str(event.widget.myId)
+        print("You clicked: " + event_name)
+        if event_name == self.appconstants.SYSTEM_MODEL:
+            print("You clicked: " + event_name)
+        elif event_name == self.appconstants.SYSTEM_MODEL_TABLE:
+            print("You clicked: " + event_name)
+        elif event_name == self.appconstants.DATA_DOMAINS:
+            print("You clicked: " + event_name)
+        elif event_name == self.appconstants.DOR:
+            print("You clicked: " + event_name)
 
     def refresh(self, event):
-        print("You clicked: " + str(event.widget))
+        event_name = str(event.widget.myId)
+        print("You clicked: " + event_name)
+        if event_name == self.appconstants.SYSTEM_MODEL:
+            self.show_sys_model()
+        elif event_name == self.appconstants.SYSTEM_MODEL_TABLE:
+            print("You clicked: " + event_name)
+        elif event_name == self.appconstants.DATA_DOMAINS:
+            self.show_domains()
+        elif event_name == self.appconstants.DOR:
+            self.show_dor()
