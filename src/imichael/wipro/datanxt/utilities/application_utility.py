@@ -1,4 +1,4 @@
-from imichael.wipro.datanxt.utilities.applicationconstants import ApplicationConstants
+from imichael.wipro.datanxt.utilities.application_constants import ApplicationConstants
 
 def convert_resultset_to_list(resultset) -> list:
     result = []

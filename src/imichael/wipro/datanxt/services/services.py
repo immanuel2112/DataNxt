@@ -10,7 +10,7 @@ def test_connection(sessiondetails) -> str:
 
 def check_application_installation_Status(sessiondetails) -> int:
     connection = Connection(sessiondetails)
-    app_db_exists = connection.check_application_installation_Status()
+    app_db_exists = connection.check_application_installation_status()
     print("appdbexists: " + str(app_db_exists))
     return app_db_exists
 

@@ -33,7 +33,7 @@ class ApplicationConstants:
         self.APPLICATION_INSTALL_HEADER_FRAME_LABEL = "DataNxt"
 
         self.HOME_TAB_PROJECTS = "Projects"
-        self.HOME_TAB_NEWPROJECT = "New Project"
+        self.HOME_TAB_NEW_PROJECT = "New Project"
         self.HOME_TAB_CONFIGURATION = "Configuration"
         self.HOME_TAB_ADMIN = "Admin"
         self.HOME_TAB_ABOUT = "About"
@@ -55,8 +55,8 @@ class ApplicationConstants:
         self.IMAGE_REFRESH = '../../../../res/refresh.png'
         self.TOTAL_LBL = "Total Records: "
 
-        self.APPLICATION_CONTENT_MENU_FRAME_BGCOLOR = "#1A99A2"
-        self.APPLICATION_CONTENT_DISPLAY_FRAME_BGCOLOR = "#47B6BE"
+        self.APPLICATION_CONTENT_MENU_FRAME_BG_COLOR = "#1A99A2"
+        self.APPLICATION_CONTENT_DISPLAY_FRAME_BG_COLOR = "#47B6BE"
 
         self.TABLE_SYSTEM_MODEL = "sys_model"
         self.TABLE_SYSTEM_MODEL_TABLE = "sys_model_table"

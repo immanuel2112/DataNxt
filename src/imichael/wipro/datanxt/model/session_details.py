@@ -1,4 +1,4 @@
-from imichael.wipro.datanxt.utilities.applicationconstants import ApplicationConstants
+from imichael.wipro.datanxt.utilities.application_constants import ApplicationConstants
 
 class SessionDetails:
     def __init__(self, host, authenticationopt, user, password):

@@ -1,6 +1,6 @@
 from tkinter import messagebox, ttk, X, BOTH, Text
 
-from imichael.wipro.datanxt.component.applicationwindowtemplate import ApplicationWindowTemplate
+from imichael.wipro.datanxt.component.application_window_template import ApplicationWindowTemplate
 from imichael.wipro.datanxt.services.services import install
 
 
@@ -11,7 +11,7 @@ class Install(ApplicationWindowTemplate):
         self.sessiondetails = sessiondetails
 
         # Build Header Frame Label with Message
-        self.show_header_message(self.appconstants.APPLICATION_INSTALL_HEADER_FRAME_LABEL)
+        self.show_header_message(self.app_constants.APPLICATION_INSTALL_HEADER_FRAME_LABEL)
 
         self.install_frame = ttk.Frame(self.master, style='Content.TFrame')
         self.log = Text(self.install_frame, state='disabled')
@@ -23,8 +23,8 @@ class Install(ApplicationWindowTemplate):
             if messagebox.askokcancel("Quit", "Do you want to quit?"):
                 self.master.destroy()
 
-        self.master.geometry(self.appconstants.APPLICATION_HOME_GEOMETRY)
-        self.master.title(self.appconstants.APPLICATION_TITLE)
+        self.master.geometry(self.app_constants.APPLICATION_HOME_GEOMETRY)
+        self.master.title(self.app_constants.APPLICATION_TITLE)
         self.master.protocol("WM_DELETE_WINDOW", on_closing)
         self.master.mainloop()
 
@@ -46,7 +46,7 @@ class Install(ApplicationWindowTemplate):
             error_lines = self.sessiondetails.getError_Lines()
             for i in error_lines:
                 self.highlight_text(tag_name='tag'+str(error_lines[i-1]),
-                                    lineno=error_lines[i-1],
+                                    line_no=error_lines[i-1],
                                     start_char=1,
                                     end_char=5,
                                     fg_color='red')

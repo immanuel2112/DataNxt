@@ -1,11 +1,11 @@
 from tkinter import messagebox, ttk, StringVar, Button, Tk, X, BOTH
 
-from imichael.wipro.datanxt.component.applicationwindowtemplate import ApplicationWindowTemplate
+from imichael.wipro.datanxt.component.application_window_template import ApplicationWindowTemplate
 from imichael.wipro.datanxt.component.home import Home
 from imichael.wipro.datanxt.component.install import Install
-from imichael.wipro.datanxt.model.sessiondetails import SessionDetails
+from imichael.wipro.datanxt.model.session_details import SessionDetails
 from imichael.wipro.datanxt.services.services import test_connection, check_application_installation_Status
-from imichael.wipro.datanxt.utilities.applicationconstants import ApplicationConstants
+from imichael.wipro.datanxt.utilities.application_constants import ApplicationConstants
 
 
 class DataNxtLogin(ApplicationWindowTemplate):
@@ -13,7 +13,7 @@ class DataNxtLogin(ApplicationWindowTemplate):
         # Build Frame from Parent
         super().__init__(master)
         # Build Header Frame Label with Message
-        self.show_header_message(self.appconstants.APPLICATION_HEADER_FRAME_LABEL)
+        self.show_header_message(self.app_constants.APPLICATION_HEADER_FRAME_LABEL)
 
         self.content = ttk.Frame(self.master, style='Content.TFrame')
 
@@ -23,7 +23,7 @@ class DataNxtLogin(ApplicationWindowTemplate):
         self.loginwelcome.place(x=150, y=30)
 
         self.servernamelbl = ttk.Label(self.content, text="Server name", style='Content.TLabel',
-                                       width=self.appconstants.APPLICATION_LABEL_WIDTH)
+                                       width=self.app_constants.APPLICATION_LABEL_WIDTH)
         self.servernamelbl.place(x=150, y=90)
 
         self.servernametxt = ttk.Entry(self.content, width=30)
@@ -31,43 +31,43 @@ class DataNxtLogin(ApplicationWindowTemplate):
         self.servernametxt.place(x=300, y=90)
 
         self.authenticationlbl = ttk.Label(self.content, text="Authentication", style='Content.TLabel',
-                                           width=self.appconstants.APPLICATION_LABEL_WIDTH)
+                                           width=self.app_constants.APPLICATION_LABEL_WIDTH)
         self.authenticationlbl.place(x=150, y=120)
 
         self.authenticationopt = StringVar(self.master)
-        self.authenticationopt.set(self.appconstants.APPLICATION_AUTHENTICATION_SQL)
+        self.authenticationopt.set(self.app_constants.APPLICATION_AUTHENTICATION_SQL)
 
-        self.authenticationsqlopt = ttk.Radiobutton(self.content, text=self.appconstants.APPLICATION_AUTHENTICATION_SQL,
+        self.authenticationsqlopt = ttk.Radiobutton(self.content, text=self.app_constants.APPLICATION_AUTHENTICATION_SQL,
                                                     variable=self.authenticationopt,
-                                                    value=self.appconstants.APPLICATION_AUTHENTICATION_SQL,
+                                                    value=self.app_constants.APPLICATION_AUTHENTICATION_SQL,
                                                     style='Content.TRadiobutton',
                                                     command=self.func_change_authentication)
         self.authenticationsqlopt.place(x=300, y=120)
 
         self.authenticationwinopt = ttk.Radiobutton(self.content,
-                                                    text=self.appconstants.APPLICATION_AUTHENTICATION_WINDOWS,
+                                                    text=self.app_constants.APPLICATION_AUTHENTICATION_WINDOWS,
                                                     variable=self.authenticationopt,
-                                                    value=self.appconstants.APPLICATION_AUTHENTICATION_WINDOWS,
+                                                    value=self.app_constants.APPLICATION_AUTHENTICATION_WINDOWS,
                                                     style='Content.TRadiobutton',
                                                     command=self.func_change_authentication)
         self.authenticationwinopt.place(x=300, y=140)
 
         self.useridlbl = ttk.Label(self.content, text="User id", style='Content.TLabel',
-                                   width=self.appconstants.APPLICATION_LABEL_WIDTH)
+                                   width=self.app_constants.APPLICATION_LABEL_WIDTH)
         self.useridlbl.place(x=150, y=170)
 
         self.useridtxt = ttk.Entry(self.content, width=30)
         self.useridtxt.place(x=300, y=170)
 
         self.passwordlbl = ttk.Label(self.content, text="Password", style='Content.TLabel',
-                                     width=self.appconstants.APPLICATION_LABEL_WIDTH)
+                                     width=self.app_constants.APPLICATION_LABEL_WIDTH)
         self.passwordlbl.place(x=150, y=200)
 
         self.passwordtxt = ttk.Entry(self.content, show="*",
-                                     width=self.appconstants.APPLICATION_LABEL_ENTRY_BUTTON_WIDTH)
+                                     width=self.app_constants.APPLICATION_LABEL_ENTRY_BUTTON_WIDTH)
         self.passwordtxt.place(x=300, y=200)
 
-        self.connectbtn = Button(self.content, text="Connect", width=self.appconstants.APPLICATION_BUTTON_WIDTH,
+        self.connectbtn = Button(self.content, text="Connect", width=self.app_constants.APPLICATION_BUTTON_WIDTH,
                                  command=self.func_connect)
         self.connectbtn.place(x=300, y=230)
 
@@ -75,11 +75,11 @@ class DataNxtLogin(ApplicationWindowTemplate):
         self.content.pack(fill=BOTH, expand=True)
 
     def func_change_authentication(self):
-        if self.authenticationopt.get() == self.appconstants.APPLICATION_AUTHENTICATION_WINDOWS:
+        if self.authenticationopt.get() == self.app_constants.APPLICATION_AUTHENTICATION_WINDOWS:
             self.useridtxt.config(state='disabled')
             self.passwordtxt.config(state='disabled')
 
-        if self.authenticationopt.get() == self.appconstants.APPLICATION_AUTHENTICATION_SQL:
+        if self.authenticationopt.get() == self.app_constants.APPLICATION_AUTHENTICATION_SQL:
             self.useridtxt.config(state='normal')
             self.passwordtxt.config(state='normal')
 
