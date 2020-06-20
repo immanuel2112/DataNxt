@@ -1,11 +1,12 @@
 class ApplicationConstants:
     def __init__(self):
-        self.APPLICATION_TITLE = "DataNxt - Wipro Limited"
-        self.APPLICATION_WIPRO_LOGO = "..\..\..\icons\wiprologo.jpg"
+        self.APPLICATION_NAME = "DataNxt"
+        self.APPLICATION_TITLE = self.APPLICATION_NAME + " - Wipro Limited"
+        self.APPLICATION_WIPRO_LOGO = "../../../icons/wiprologo.jpg"
         self.APPLICATION_LOGIN_GEOMETRY = "660x400+450+200"
         self.APPLICATION_HEADER_FRAME_BGCOLOR = "#1A99A2"
         self.APPLICATION_CONTENT_FRAME_BGCOLOR = "#47B6BE"
-        self.APPLICATION_HEADER_FRAME_LABEL = "DataNxt"
+        self.APPLICATION_HEADER_FRAME_LABEL = self.APPLICATION_NAME
         self.APPLICATION_HEADER_LABEL_FONT = "arial 15 bold"
         self.APPLICATION_HEADER_LABEL_FGCOLOR = "#FFFFFF"
         self.APPLICATION_HEADER_LABEL_BGCOLOR = "#1A99A2"
@@ -29,8 +30,8 @@ class ApplicationConstants:
         self.APPLICATION_MESSAGEBOX_TYPE_ERROR = "Error"
         self.APPLICATION_MESSAGEBOX_TYPE_INFO = "Info"
         self.APPLICATION_MESSAGEBOX_TYPE_WARNING = "Warning"
-        self.APPLICATION_HOME_HEADER_FRAME_LABEL = "DataNxt"
-        self.APPLICATION_INSTALL_HEADER_FRAME_LABEL = "DataNxt"
+        self.APPLICATION_HOME_HEADER_FRAME_LABEL = self.APPLICATION_NAME
+        self.APPLICATION_INSTALL_HEADER_FRAME_LABEL = self.APPLICATION_NAME
 
         self.HOME_TAB_PROJECTS = "Projects"
         self.HOME_TAB_NEW_PROJECT = "New Project"
