@@ -1,1 +1,0 @@
-pyinstaller --onefile C:\Users\320027644\IdeaProjects\SAPDataValidation\src\sapvalidation.py

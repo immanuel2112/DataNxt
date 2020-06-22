@@ -1,0 +1,1 @@
+pyinstaller --onefile C:\Users\320027644\Codebase\SAPDMDQ\src\imichael\wipro\datanxt\component\login.py
