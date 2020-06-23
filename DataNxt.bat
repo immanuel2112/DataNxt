@@ -1,1 +1,1 @@
-pyinstaller --onefile C:\Users\320027644\Codebase\SAPDMDQ\src\datanxt\__init__.py
+pyinstaller --noconsole --name DataNxt --onefile C:\Users\320027644\Codebase\SAPDMDQ\src\datanxt\__init__.py
