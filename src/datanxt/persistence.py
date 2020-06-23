@@ -1,9 +1,8 @@
 import pypyodbc as pyodbc
 
-from imichael.wipro.datanxt.model.app_models import Table
-from imichael.wipro.datanxt.persistence import query_constants
-from imichael.wipro.datanxt.utilities import application_utility
-from imichael.wipro.datanxt.utilities.application_constants import ApplicationConstants
+from datanxt.app_models import Table
+from datanxt import query_constants, application_utility
+from datanxt.application_constants import ApplicationConstants
 
 
 class Connection:
@@ -11,7 +10,6 @@ class Connection:
         self.session_details = session_details
         self.build_connection_string()
         self.app_constants = ApplicationConstants()
-        self.connection_string = None
         self.connection = None
 
     def build_connection_string(self) -> None:

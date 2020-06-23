@@ -50,10 +50,10 @@ class ApplicationConstants:
         self.EDIT = "Edit"
         self.DELETE = "Delete"
 
-        self.IMAGE_ADD = '../../../../res/add.png'
-        self.IMAGE_EDIT = '../../../../res/edit.png'
-        self.IMAGE_DELETE = '../../../../res/delete.png'
-        self.IMAGE_REFRESH = '../../../../res/refresh.png'
+        self.IMAGE_ADD = '../res/add.png'
+        self.IMAGE_EDIT = '../res/edit.png'
+        self.IMAGE_DELETE = '../res/delete.png'
+        self.IMAGE_REFRESH = '../res/refresh.png'
         self.TOTAL_LBL = "Total Records: "
 
         self.APPLICATION_CONTENT_MENU_FRAME_BG_COLOR = "#1A99A2"

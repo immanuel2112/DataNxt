@@ -1,5 +1,5 @@
-from imichael.wipro.datanxt.model.app_models import Table
-from imichael.wipro.datanxt.persistence.persistence import Connection
+from datanxt.app_models import Table
+from datanxt.persistence import Connection
 
 
 def test_connection(sessiondetails) -> str:

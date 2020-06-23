@@ -1,11 +1,11 @@
 from tkinter import messagebox, ttk, StringVar, Button, Tk, X, BOTH
 
-from imichael.wipro.datanxt.component.application_window_template import ApplicationWindowTemplate
-from imichael.wipro.datanxt.component.home import Home
-from imichael.wipro.datanxt.component.install import Install
-from imichael.wipro.datanxt.model.session_details import SessionDetails
-from imichael.wipro.datanxt.services.services import test_connection, check_application_installation_Status
-from imichael.wipro.datanxt.utilities.application_constants import ApplicationConstants
+from datanxt.application_window_template import ApplicationWindowTemplate
+from datanxt.home import Home
+from datanxt.install import Install
+from datanxt.session_details import SessionDetails
+from datanxt.services import test_connection, check_application_installation_Status
+from datanxt.application_constants import ApplicationConstants
 
 
 class DataNxtLogin(ApplicationWindowTemplate):
@@ -93,7 +93,7 @@ class DataNxtLogin(ApplicationWindowTemplate):
             self.show_error()
         else:
             self.error = test_connection(self.sessiondetails)
-    
+
             if self.error != "":
                 self.show_error()
                 self.reset_to_default()
@@ -108,8 +108,8 @@ class DataNxtLogin(ApplicationWindowTemplate):
                     installpage = Tk()
                     installpage.focus_force()
                     Install(installpage, self.sessiondetails)
-    
-    
+
+
     def func_validate(self):
         if len(self.sessiondetails.getHost()) == 0:
             self.error = "Please enter server name."

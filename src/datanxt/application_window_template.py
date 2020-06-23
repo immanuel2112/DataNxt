@@ -1,6 +1,6 @@
 from tkinter import messagebox, ttk
 
-from imichael.wipro.datanxt.utilities.application_constants import ApplicationConstants
+from datanxt.application_constants import ApplicationConstants
 
 
 class ApplicationWindowTemplate:

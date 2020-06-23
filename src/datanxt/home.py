@@ -1,10 +1,10 @@
 from tkinter import messagebox, ttk, X, BOTH, TOP, LEFT, RIGHT
 from PIL import ImageTk
 
-from imichael.wipro.datanxt.model.app_models import Page
-from imichael.wipro.datanxt.component.application_window_template import ApplicationWindowTemplate
-from imichael.wipro.datanxt.services.services import get_table
-from imichael.wipro.datanxt.utilities import application_utility
+from datanxt.app_models import Page
+from datanxt.application_window_template import ApplicationWindowTemplate
+from datanxt.services import get_table
+from datanxt import application_utility
 
 
 class Home(ApplicationWindowTemplate):
